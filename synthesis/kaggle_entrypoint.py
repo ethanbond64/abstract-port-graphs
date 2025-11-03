@@ -60,7 +60,7 @@ def solve_private_set(file_path: str, task_timeout_seconds: int) -> Dict[str, Li
                 interpreter = ArcInterpreter()
                 output_grid: np.ndarray = interpreter.evaluate_program(arc_program, test.input_matrix + 1)
                 output_grid = output_grid - 1
-                test_results.append({"attempt_1": output_grid.tolist(), "attempt_2": test.input_matrix})
+                test_results.append({"attempt_1": output_grid.astype(int).tolist(), "attempt_2": [[0]]})
         else:
             for _ in task.test:
                 test_results.append({"attempt_1": [[0]], "attempt_2": [[0]]})
