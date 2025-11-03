@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Viewer</title>
+    <style>
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/" method="post">
+        <label for="challenge_id">Enter Challenge ID:</label>
+        <input type="text" id="challenge_id" name="challenge_id" value="{{ challenge_id }}" required>
+        <button type="submit">Submit</button>
+    </form>
+    <form action="/step" method="post">
+        <button type="submit" style="background-color:red">Step</button>
+    </form>
+    <iframe src="/graph" title="Graph Viewer"></iframe>
+    <p>
+        {{ data }}
+    </p>
+</body>
+</html>
