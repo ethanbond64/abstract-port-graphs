@@ -532,7 +532,7 @@ def predicate_has_matches_in_test(program_state: ProgramState, evaluation_contex
     graph_state = Interpreter.populate_graph_io_inputs(prepared_graph, graph_state, all_objects)
     try:
         interpreter = Interpreter(initial_depth=1)
-        out_state = interpreter.evaluate_function_graph(prepared_graph, graph_state)
+        out_state = interpreter.evaluate_port_graph(prepared_graph, graph_state)
         if len(out_state.get_output_values()[output_node.id]) > 0:
             return True
     except Exception as e:

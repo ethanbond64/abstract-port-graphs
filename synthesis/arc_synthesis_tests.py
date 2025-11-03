@@ -27,7 +27,7 @@ CHALLENGE_ID_SUBSET = [
 
 def solve_wrapper(graph, input_matrix, output_matrix):
     in_mat = input_matrix + 1
-    sol = ArcInterpreter().solve(graph, in_mat) - 1
+    sol = ArcInterpreter().evaluate_program(graph, in_mat) - 1
     equal = np.array_equal(sol, np.array(output_matrix))
     if not equal:
         print(sol)

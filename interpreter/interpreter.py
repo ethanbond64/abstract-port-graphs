@@ -29,13 +29,13 @@ class Interpreter:
     def _exit_function(self):
         self.nested_function_depth -= 1
 
-    def solve(self, program: Program, raw_data: Any):
+    def evaluate_program(self, program: Program, raw_data: Any):
 
         perceived_objects = program.perception_model.apply_perception(raw_data)
 
-        graph_io = self.populate_graph_io_inputs(program.graph, GraphIO(program.graph), perceived_objects) # TODO make this construct the io instance
+        graph_io = self.populate_graph_io_inputs(program.graph, GraphIO(program.graph), perceived_objects)
         for connected_subgraph in get_connected_subgraphs(program.graph):
-            graph_io = self.evaluate_function_graph(connected_subgraph, graph_io)
+            graph_io = self.evaluate_port_graph(connected_subgraph, graph_io)
 
         return program.format_output_values(graph_io.get_output_values())
 
@@ -75,7 +75,7 @@ class Interpreter:
 
 
     # Graph evaluated here must be connected.
-    def evaluate_function_graph(self, graph: PortGraph, graph_io: GraphIO) -> GraphIO:
+    def evaluate_port_graph(self, graph: PortGraph, graph_io: GraphIO) -> GraphIO:
 
         try :
             self._enter_function()

@@ -3225,7 +3225,7 @@ def solve_63613498():
 
 def solve_wrapper(interpreter: Interpreter, graph, input_matrix, output_matrix):
     in_mat = np.array(input_matrix) + 1
-    sol = interpreter.solve(graph, in_mat) - 1
+    sol = interpreter.evaluate_program(graph, in_mat) - 1
     equal = np.array_equal(sol, np.array(output_matrix))
     if not equal:
         print(sol)

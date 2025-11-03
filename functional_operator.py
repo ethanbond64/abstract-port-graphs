@@ -40,7 +40,7 @@ class FunctionalOperator(OperatorNode):
         for i, arg in enumerate(args):
             graph_state.add_input_value(self.input_ids[i], arg)
 
-        output_graph_state = interpreter.evaluate_function_graph(graph, graph_state)
+        output_graph_state = interpreter.evaluate_port_graph(graph, graph_state)
 
         output_list = output_graph_state.get_output_values()[self.output_id]
         return output_list[0] if len(output_list) > 0 else None

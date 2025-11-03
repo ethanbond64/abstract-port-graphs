@@ -26,7 +26,7 @@ def create_app():
             challenge = ArcTask.get(challenge_id)
 
             interpreter = ArcInterpreter()
-            DebuggerState.initialize(challenge, 0, new_graph, interpreter.solve)
+            DebuggerState.initialize(challenge, 0, new_graph, interpreter.evaluate_program)
 
         debug_info = DebuggerState.get_info()
         return render_template("index.html",
