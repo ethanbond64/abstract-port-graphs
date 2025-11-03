@@ -4,3 +4,4 @@ debugger/lib
 build/
 .idea/
 local_deps/
+**/__pycache__/
