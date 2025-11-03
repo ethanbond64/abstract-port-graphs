@@ -5,7 +5,7 @@ from multiprocessing import Queue, Process
 import numpy as np
 
 from arc.arc_objects import ArcInterpreter
-from arc.arc_utils import ArcTask, read_challenge_file
+from arc.arc_utils import ArcTask, read_challenge_text
 from synthesis.meta_learning import MetaModel, ActionLogger
 from synthesis.synthesis_loop import synthesis_loop
 
@@ -43,7 +43,7 @@ def solve_private_set(file_path: str, task_timeout_seconds: int) -> Dict[str, Li
     if not path_obj.is_file():
         raise FileNotFoundError(f"File {path_obj} not found")
 
-    challenges: Dict[str, ArcTask] = read_challenge_file(path_obj.read_text(encoding="utf-8"))
+    challenges: Dict[str, ArcTask] = read_challenge_text(path_obj.read_text(encoding="utf-8"))
 
     # Iterate challenges
     output = {}

@@ -39,10 +39,10 @@ def read_challenges(file_name):
     base_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(base_dir, file_name) if not os.path.isabs(file_name) else file_name
     with open(file_path) as file:
-        return read_challenge_file(file)
+        return {key: ArcTask.of(key, value) for key, value in json.load(file).items()}
 
-def read_challenge_file(file):
-    return {key: ArcTask.of(key, value) for key, value in json.load(file).items()}
+def read_challenge_text(text):
+    return {key: ArcTask.of(key, value) for key, value in json.loads(text).items()}
 
 def read_solutions(file_name):
     base_dir = os.path.dirname(os.path.abspath(__file__))
