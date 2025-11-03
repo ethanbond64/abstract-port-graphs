@@ -60,7 +60,7 @@ class ArcImage:
             raise TypeError("Array must contain only numeric values (int or float).")
 
         # Cast to integer array if possible
-        if np.issubdtype(array.dtype, np.integer) or np.issubdtype(array.dtype, np.bool_):
+        if np.issubdtype(array.dtype, np.integer) or np.issubdtype(array.dtype, bool):
             self.array = array.astype(int)
         elif np.issubdtype(array.dtype, np.floating):
             rounded = np.rint(array)
@@ -206,7 +206,7 @@ class ColorValue:
 
     def __init__(self, value=None, source_mask:Optional[ArcImage]=None):
         self.value = value
-        self.solid = True if value is None or isinstance(value, np.bool) else math.isclose(value, round(value), abs_tol=0.0001) # TODO hard coded tolerance
+        self.solid = True if value is None or isinstance(value, bool) else math.isclose(value, round(value), abs_tol=0.0001) # TODO hard coded tolerance
         self.source_mask = source_mask
         # self.normalized_mask = None
         # self.orientation = None
