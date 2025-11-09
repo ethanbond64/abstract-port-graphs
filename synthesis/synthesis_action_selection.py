@@ -240,13 +240,6 @@ class ProgramHypothesis:
                 predicate_graph = self.predicate_traces[predicate_trace_id].graph
                 combo_graph = PortGraph.merge_graphs(predicate_graph, combo_graph, node_lookup)[0]
 
-            # for lane_key, lane in :
-            #     operator_node_id = lane_key[1]
-            #     predicate_id, predicate_node_id = lane.confirmed_predicates[0]
-            #     node_lookup = {predicate_node_id: operator_node_id}
-            #     predicate_graph = self.predicate_traces[predicate_id].graph
-            #     combo_graph = DslGraph.merge_graphs(predicate_graph, combo_graph, node_lookup)[0]
-
             master_graphs.append(combo_graph)
 
         return master_graphs

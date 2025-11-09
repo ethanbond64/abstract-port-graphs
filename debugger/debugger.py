@@ -1,10 +1,10 @@
-from flask import Flask, request, render_template, send_file
 import os
 
-from arc.arc_objects import ArcInterpreter
+from flask import Flask, request, render_template, send_file
+
+from arc.arc_solutions import *
 from arc.arc_utils import ArcTask
 from debugger.debugger_state import DebuggerState
-from arc.arc_solutions import *
 
 
 def create_app():

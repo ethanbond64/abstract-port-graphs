@@ -3,7 +3,7 @@ from copy import deepcopy
 from enum import Enum
 from typing import Tuple, List, Set, Callable, Dict, Union
 
-from nodes import Constant, RelationshipNode, OperatorNode, Node, InputNode, OutputNode
+from nodes import Constant, RelationshipNode, OperatorNode, Node
 from port_graphs import Edge, PortGraph
 
 GENERIC_EDGE_FROM_LABEL = "0"

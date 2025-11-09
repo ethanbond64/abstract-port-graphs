@@ -8,7 +8,6 @@ from synthesis.arc_specific.catalog_operators import TYPE_TO_OPERATOR, OPERATOR_
 from synthesis.arc_specific.catalog_relationships_new import TEMP_RELATIONSHIP_SEARCH_STRATEGIES, RelationshipSearchStrategy
 from synthesis.design_time_models import WildCardNode
 from synthesis.execution import SynthesisAction
-from synthesis.priors import NODE_PRIORS
 from synthesis.program_state import ProgramState, EvaluationContext, ProgramTrace
 from synthesis.synthesis_engine import SynthesisDirective, ExtendUpEdgeDirective, ExtendUpNodeDirective, \
     ExtendDownOperatorDirective, ForkJoinDirective, ExtendDownConstantDirective, ExtendDownInputDirective, \
@@ -166,7 +165,7 @@ class SynthesisTemplate:
 
         self.dsl_member = dsl_member
         self.parameterized_traces = parameterized_traces
-        self.dsl_prior = NODE_PRIORS[dsl_member] if dsl_member is not None else 1.0
+        self.dsl_prior = 1.0
 
     def get_priors(self) -> Tuple[float, float]:
         return self.action_prior, self.dsl_prior
