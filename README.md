@@ -86,34 +86,34 @@ result = interpreter.evaluate_program(program, raw_data)
 | `Constant`     | Holds static value                | Specified type |
 
 ### Intermediate Nodes (Processing)
-| Node Type                    | Description                  | Input Ports | Output Type  |
-|------------------------------|------------------------------|-------------|--------------|
-| **Operators**                |                              |             |              |
-| `AdditionOperator`           | Adds two integers            | 2           | int          |
-| `SubtractionOperator`        | Subtracts two integers       | 2           | int          |
-| `MultiplyOperator`           | Multiplies two numbers       | 2           | Number       |
-| `ConstructorOperator`        | Constructs custom type       | Variable    | Custom type  |
-| **Set Operators**            |                              |             |              |
-| `SumSetOperator`             | Sums integer set             | 1           | int          |
-| `SetRankOperator`            | Ranks element in set         | 2           | int          |
-| `ApplyScalarOpToSetOperator` | Maps operator over set       | Variable    | DslSet       |
-| `CreateLocalSetOperator`     | Creates singleton set        | 1           | DslSet       |
-| `AddToLocalSetOperator`      | Adds element to set          | 2           | DslSet       |
-| **Relationships**            |                              |             |              |
-| `Equals`                     | Tests equality               | 2           | bool         |
-| `NotEquals`                  | Tests inequality             | 2           | bool         |
-| `LessThan`                   | Tests less than              | 2           | bool         |
-| `LessThanOrEqual`            | Tests less than or equal     | 2           | bool         |
-| `GreaterThan`                | Tests greater than           | 2           | bool         |
-| `GreaterThanOrEqual`         | Tests greater than or equal  | 2           | bool         |
-| `SetContains`                | Tests set membership         | 2           | bool         |
-| `SetNotContains`             | Tests set non-membership     | 2           | bool         |
-| **Control Flow**             |                              |             |              |
-| `RecursiveProxyNode`         | Enables recursion            | 2           | Any          |
-| `IterativeProxyNode`         | Enables iteration            | 2           | Any          |
-| `SetJoin`                    | Aggregates values to set     | 1           | DslSet       |
-| `SetSplit`                   | Distributes set to instances | 1           | Element type |
-| `DisjointSetNode`            | Connects disjoint graphs     | 1           | DslSet       |
+| Node Type                    | Description                                                                   | Input Ports | Output Type  |
+|------------------------------|-------------------------------------------------------------------------------|-------------|--------------|
+| **Operators**                |                                                                               |             |              |
+| `AdditionOperator`           | Adds two integers                                                             | 2           | int          |
+| `SubtractionOperator`        | Subtracts two integers                                                        | 2           | int          |
+| `MultiplyOperator`           | Multiplies two numbers                                                        | 2           | Number       |
+| `ConstructorOperator`        | Constructs custom type                                                        | Variable    | Custom type  |
+| **Set Operators**            |                                                                               |             |              |
+| `SumSetOperator`             | Sums integer set                                                              | 1           | int          |
+| `SetRankOperator`            | Ranks element in set                                                          | 2           | int          |
+| `ApplyScalarOpToSetOperator` | Maps operator over set                                                        | Variable    | DslSet       |
+| `CreateLocalSetOperator`     | Creates singleton set                                                         | 1           | DslSet       |
+| `AddToLocalSetOperator`      | Adds element to set                                                           | 2           | DslSet       |
+| **Relationships**            |                                                                               |             |              |
+| `Equals`                     | Tests equality                                                                | 2           | bool         |
+| `NotEquals`                  | Tests inequality                                                              | 2           | bool         |
+| `LessThan`                   | Tests less than                                                               | 2           | bool         |
+| `LessThanOrEqual`            | Tests less than or equal                                                      | 2           | bool         |
+| `GreaterThan`                | Tests greater than                                                            | 2           | bool         |
+| `GreaterThanOrEqual`         | Tests greater than or equal                                                   | 2           | bool         |
+| `SetContains`                | Tests set membership                                                          | 2           | bool         |
+| `SetNotContains`             | Tests set non-membership                                                      | 2           | bool         |
+| **Control Flow**             |                                                                               |             |              |
+| `RecursiveProxyNode`         | Enables recursion                                                             | 2           | Any          |
+| `IterativeProxyNode`         | Enables iteration                                                             | 2           | Any          |
+| `SetJoin`                    | Aggregates values to set                                                      | 1           | DslSet       |
+| `SetSplit`                   | Distributes set to instances                                                  | 1           | Element type |
+| `DisjointSetNode`            | Share set across disjoint graphs  <br/> while still treating them as disjoint | 1           | DslSet       |
 
 ### Output Nodes
 | Node Type | Description | Input Ports |
