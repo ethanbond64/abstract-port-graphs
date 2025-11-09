@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, send_file
 
 from arc.arc_solutions import *
 from arc.arc_utils import ArcTask
-from debugger.debugger_state import DebuggerState
+from debugger_state import DebuggerState
 
 
 def create_app():

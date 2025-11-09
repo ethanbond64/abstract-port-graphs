@@ -7,7 +7,7 @@ import numpy as np
 from arc.arc_utils import ArcTask
 from interpreter.interpretter_common import GraphInstanceState
 from arc.arc_objects import ArcGraph
-from debugger.debugger_visualization import generate_graph_html
+from debugger_visualization import generate_graph_html
 
 CLIENT_SIDE_TIMEOUT = 5
 
