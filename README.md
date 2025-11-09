@@ -120,7 +120,6 @@ result = interpreter.evaluate_program(program, raw_data)
 |-----------|-------------|-------------|
 | `OutputNode` | Produces final result | 1 |
 
-
 ## Setup
 - Use python 3.13+
 - Install dependencies via `pip install -r requirements.txt`
