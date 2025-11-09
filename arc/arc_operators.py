@@ -534,13 +534,9 @@ class GetClusterColorPatternOperator(OperatorNode):
         if arc_object.identity.color.value % 1 == 0:
             return arc_object.identity.color
 
-        # TODO - to handle all cases, where the shape has many wholes and no "full" pattern rectangles,
-        #  is very difficult. Just try to make it work for 17.
-        driver_mask = copy(arc_object.identity.zoomed_mask)  # TODO Confirm correct copy function
+        driver_mask = copy(arc_object.identity.zoomed_mask)
 
         # Start with finding repetition in 1D along the top row
-        # TODO take multiple rows' cuts and use the largest (must be multiple of the others)
-        # TODO temp - taking the max of the top 3
         cut_x_1 = get_one_dimensional_matching_cut(driver_mask[0])
         cut_x_2 = get_one_dimensional_matching_cut(driver_mask[1])
         cut_x_3 = get_one_dimensional_matching_cut(driver_mask[2])

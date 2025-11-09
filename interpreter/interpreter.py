@@ -71,7 +71,7 @@ class Interpreter:
         if node_perception_qualifiers is None:
             return True
 
-        return perceived_value.get_perception_function() in node_perception_qualifiers
+        return perceived_value.get_perception_id() in node_perception_qualifiers
 
 
     # Graph evaluated here must be connected.

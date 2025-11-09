@@ -62,9 +62,6 @@ class Touches(RelationshipNode):
         super().__init__([ArcObject, ArcObject])
 
     def apply(self, object_1: ArcObject, object_2: ArcObject):
-        # TODO hard coded function name references
-        if object_1.get_perception_function().__name__ == "full" or object_2.get_perception_function().__name__ == "full":
-            return False
 
         mask_a = (object_1.mask.copy() != 0)
         mask_b = (object_2.mask.copy() != 0)

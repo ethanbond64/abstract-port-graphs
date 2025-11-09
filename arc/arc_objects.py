@@ -34,7 +34,7 @@ class EnvironmentShape(PerceivedType):
     def get_components(cls) -> List[Tuple[str, Type]]:
         return [("y_size", int), ("x_size", int)]
 
-    def get_perception_function(self):
+    def get_perception_id(self):
         return EnvironmentShape.ENV_PERCEPTION_KEY
 
     def to_tuple(self) -> Tuple[int, int]:
@@ -206,7 +206,7 @@ class ColorValue:
 
     def __init__(self, value=None, source_mask:Optional[ArcImage]=None):
         self.value = value
-        self.solid = True if value is None or isinstance(value, bool) else math.isclose(value, round(value), abs_tol=0.0001) # TODO hard coded tolerance
+        self.solid = True if value is None or isinstance(value, (bool, np.bool_)) else math.isclose(value, round(value), abs_tol=0.0001) # TODO hard coded tolerance
         self.source_mask = source_mask
         # self.normalized_mask = None
         # self.orientation = None
@@ -787,7 +787,7 @@ class ArcObject(PerceivedType):
             ("location", LocationValue)
         ]
 
-    def get_perception_function(self):
+    def get_perception_id(self):
         return self.__perception_function
 
     @staticmethod

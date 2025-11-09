@@ -37,7 +37,7 @@ def apply_perception(cases: List[Case], perception_model: PerceptionModel,
         # Objects
         for input_object in apply_object_def_functions_iterative(perception_model.perception_functions,
                                                                  case.input_matrix + 1, perception_model.bg_color):
-            if input_object.get_perception_function() in perception_model.perception_functions:
+            if input_object.get_perception_id() in perception_model.perception_functions:
                 input_perceived_object = PerceivedValue(ArcObject, input_object, perception_model.id, case_index,
                                                         test=test)
                 track_perceived_value(input_perceived_object)
@@ -46,7 +46,7 @@ def apply_perception(cases: List[Case], perception_model: PerceptionModel,
         if not test:
             for output_object in apply_object_def_functions_iterative(perception_model.perception_functions,
                                                                       case.output_matrix + 1, perception_model.bg_color):
-                if output_object.get_perception_function() in perception_model.perception_functions:
+                if output_object.get_perception_id() in perception_model.perception_functions:
                     output_perceived_object = PerceivedValue(ArcObject, output_object, perception_model.id, case_index,
                                                              output=True)
                     track_perceived_value(output_perceived_object)

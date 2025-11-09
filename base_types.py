@@ -26,9 +26,8 @@ class DslType(ABC):
 
 class PerceivedType(DslType):
 
-    # TODO rename to perception "ID"
     @abstractmethod
-    def get_perception_function(self):
+    def get_perception_id(self):
         raise NotImplementedError()
 
 
