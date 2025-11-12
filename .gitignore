@@ -1,6 +1,7 @@
 venv/
 .DS_Store
 debugger/lib
+debugger/out/
 build/
 .idea/
 local_deps/
