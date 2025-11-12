@@ -61,6 +61,12 @@ class DebuggerState:
         DebuggerState.__case_id = case_id
         DebuggerState.__graph = graph
 
+        # Clear the cached HTML graph location to force regeneration
+        DebuggerState.__html_graph_location = None
+
+        # Clear the set of seen nodes for fresh debugging session
+        DebuggerState.__temp_seen_nodes = set()
+
         # Stop the interpreter thread on the first node
         DebuggerState.__desired_node_id = min(DebuggerState.__graph.graph.get_nodes_by_id().keys())
         DebuggerState.__desired_subgraph_instance_index = 0
