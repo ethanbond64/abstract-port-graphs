@@ -57,7 +57,7 @@ class InputNode(Node):
             perception_qualifiers} if perception_qualifiers is not None else set())
 
     def get_debug_label(self):
-        return " ".join(p.__name__ for p in self.perception_qualifiers)
+        return " ".join((p if isinstance(p, str) else p.__name__) for p in self.perception_qualifiers)
 
     def get_outbound_type(self):
         return self.value_type
