@@ -2,7 +2,7 @@ from collections import defaultdict
 from typing import List, Type, DefaultDict, Tuple, Set
 
 from nodes import Node, InputNode, InputSetNode, OutputNode, RecursiveProxyNode, SetJoin, SetSplit
-from operator_primitives import AdditionOperator, SubtractionOperator, MultiplyOperator, \
+from operator_primitives import AdditionOperator, SubtractionOperator, MultiplyOperator, DivideOperator, \
     SumSetOperator, SetRankOperator, ApplyScalarOpToSetOperator, CreateLocalSetOperator, AddToLocalSetOperator, \
     ConstructorOperator
 from relationship_primitives import Equals, NotEquals, LessThan, LessThanOrEqual, GreaterThan, \
@@ -77,6 +77,7 @@ DEFAULT_LIBRARY.add_node_type(ConstructorOperator)
 DEFAULT_LIBRARY.add_node_type(AdditionOperator)
 DEFAULT_LIBRARY.add_node_type(SubtractionOperator)
 DEFAULT_LIBRARY.add_node_type(MultiplyOperator)
+DEFAULT_LIBRARY.add_node_type(DivideOperator)
 
 # Set Operators
 DEFAULT_LIBRARY.add_node_type(SumSetOperator)

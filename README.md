@@ -92,6 +92,7 @@ result = interpreter.evaluate_program(program, raw_data)
 | `AdditionOperator`           | Adds two integers                                                             | 2           | int          |
 | `SubtractionOperator`        | Subtracts two integers                                                        | 2           | int          |
 | `MultiplyOperator`           | Multiplies two numbers                                                        | 2           | Number       |
+| `DivideOperaror`             | Divides two numbers                                                           | 2           | Number       |
 | `ConstructorOperator`        | Constructs custom type                                                        | Variable    | Custom type  |
 | **Set Operators**            |                                                                               |             |              |
 | `SumSetOperator`             | Sums integer set                                                              | 1           | int          |

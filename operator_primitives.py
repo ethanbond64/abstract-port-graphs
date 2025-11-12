@@ -108,6 +108,15 @@ class SubtractionOperator(OperatorNode):
         return a - b
 
 
+class DivideOperator(OperatorNode):
+
+    def __init__(self):
+        super().__init__([Number, Number], Number)
+
+    def apply(self, a: Number, b: Number) -> Number:
+        return a / b
+
+
 class SumSetOperator(OperatorNode):
     def __init__(self):
         super().__init__([DslSet[int]], int)
