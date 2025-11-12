@@ -31,6 +31,10 @@ class Interpreter:
 
     def evaluate_program(self, program: Program, raw_data: Any):
 
+        # # Call starter breakpoint for debugger
+        # from debugger_state import DebuggerState
+        # DebuggerState.starter_breakpoint()
+
         perceived_objects = program.perception_model.apply_perception(raw_data)
 
         graph_io = self.populate_graph_io_inputs(program.graph, GraphIO(program.graph), perceived_objects)
@@ -177,6 +181,9 @@ class Interpreter:
 
         # Set the state value in the graph state.
         graph_instance.state[node_id] = state
+
+        # from debugger_state import DebuggerState
+        # DebuggerState.try_breakpoint(node_id, graph_instance.id, [], graph_instance.state)
 
         return event
 
