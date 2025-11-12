@@ -6,6 +6,9 @@ This work was developed as an approach to [ARC AGI](https://arcprize.org/).
 ### Paper
 https://drive.google.com/file/d/1T1EuGF-lzQHQYAN18er3j-4KBi1gqtp-/view
 
+### Hosted Visualizations
+https://www.portgraphs.com
+
 ## Contents
 - APG framework (project root, classes outlined below)
 - `arc/` - ARC Domain Specific Language.
@@ -123,4 +126,6 @@ result = interpreter.evaluate_program(program, raw_data)
 
 ## Setup
 - Use python 3.13+
+- Create a virtual environment `python3 -m venv venv`
+- Active the environment
 - Install dependencies via `pip install -r requirements.txt`
