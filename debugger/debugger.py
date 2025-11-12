@@ -6,6 +6,7 @@ from arc.arc_solutions import *
 from arc.arc_utils import ArcTask
 from arc.arc_objects import ArcInterpreter
 from debugger_state import DebuggerState
+from arc_task_visualization import generate_task_html
 
 
 def create_app():
@@ -49,6 +50,11 @@ def create_app():
             return send_file(uri, mimetype="text/html")
         else:
             return "File not found", 404
+
+    @app.route("/task/<challenge_id>", methods=["GET"])
+    def task(challenge_id):
+        task_html = generate_task_html(challenge_id)
+        return task_html, 200, {'Content-Type': 'text/html'}
 
     return app
 

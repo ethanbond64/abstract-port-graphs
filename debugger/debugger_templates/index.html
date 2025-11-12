@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARC Debugger - Graph Viewer</title>
+    <title>ARC Visualizer - Graph Viewer</title>
     <style>
         * {
             margin: 0;
@@ -31,8 +31,8 @@
         }
 
         .right-sidebar {
-            width: 20%;
-            min-width: 250px;
+            width: 35%;
+            min-width: 350px;
         }
 
         .header {
@@ -197,6 +197,14 @@
             flex: 1;
         }
 
+        .task-iframe {
+            width: 100%;
+            height: calc(100% - 45px);
+            border: none;
+            background: white;
+            border-radius: 6px;
+        }
+
         .empty-state {
             color: #999;
             font-style: italic;
@@ -250,8 +258,8 @@
             <div class="header">
                 <div class="header-content">
                     <div class="title-section">
-                        <h1>ARC Debugger</h1>
-                        <p class="subtitle">Visual graph debugger</p>
+                        <h1>ARC Visualizer</h1>
+                        <p class="subtitle">Graph structure visualization</p>
                     </div>
 
                     <div class="controls-section">
@@ -311,7 +319,8 @@
                             <button type="submit" class="btn-primary">Load</button>
                         </form>
 
-                        <form action="/step" method="post" class="form-inline">
+                        <!-- Step button hidden but functionality preserved -->
+                        <form action="/step" method="post" class="form-inline" style="display: none;">
                             <button type="submit" class="btn-step">Step</button>
                         </form>
                     </div>
@@ -326,11 +335,14 @@
 
         <div class="right-sidebar">
             <div class="data-output">
-                <div class="data-header">Debug Output</div>
-                {% if data %}
-                    <div class="data-content">{{ data }}</div>
+                <div class="data-header">ARC Task Display</div>
+                {% if challenge_id %}
+                    <iframe src="/task/{{ challenge_id }}"
+                            class="task-iframe"
+                            title="ARC Task Visualization">
+                    </iframe>
                 {% else %}
-                    <div class="empty-state">No debug output available</div>
+                    <div class="empty-state">Select a challenge to view the ARC task</div>
                 {% endif %}
             </div>
         </div>
