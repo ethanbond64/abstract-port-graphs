@@ -103,9 +103,13 @@ def generate_static_index(task_ids, output_dir):
     """Generate the static index.html file."""
 
     # Generate options for the dropdown
-    options_html = ['<option value="">Select...</option>']
+    options_html = ['<option value="">Select a challenge...</option>']
     for task_id in task_ids:
-        options_html.append(f'<option value="{task_id}">{task_id}</option>')
+        # Default selection for 007bbfb7
+        if task_id == '007bbfb7':
+            options_html.append(f'<option value="{task_id}" selected>{task_id}</option>')
+        else:
+            options_html.append(f'<option value="{task_id}">{task_id}</option>')
     options_str = '\n                                '.join(options_html)
 
     index_html = f'''<!DOCTYPE html>
@@ -113,7 +117,7 @@ def generate_static_index(task_ids, output_dir):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARC Visualizer - Graph Viewer</title>
+    <title>Abstract Port Graph Visualizer</title>
     <style>
         * {{
             margin: 0;
@@ -126,6 +130,7 @@ def generate_static_index(task_ids, output_dir):
             background: #ffffff;
             min-height: 100vh;
             padding: 20px;
+            padding-bottom: 60px;
         }}
 
         .main-container {{
@@ -297,6 +302,60 @@ def generate_static_index(task_ids, output_dir):
             padding: 20px;
         }}
 
+        .info-section {{
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 15px;
+        }}
+
+        .info-section h2 {{
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 12px;
+        }}
+
+        .info-section p {{
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }}
+
+        .info-links {{
+            padding-left: 20px;
+            # display: flex;
+            gap: 20px;
+            # flex-wrap: wrap;
+        }}
+
+        .info-links a {{
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 500;
+            # display: flex;
+            align-items: center;
+            gap: 5px;
+        }}
+
+        .info-links a:hover {{
+            text-decoration: underline;
+        }}
+
+        footer {{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            padding: 15px 20px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }}
+
         /* Responsive adjustments */
         @media (max-width: 1200px) {{
             .main-container {{
@@ -362,21 +421,49 @@ def generate_static_index(task_ids, output_dir):
                 emptyState.style.display = 'block';
             }}
         }}
+
+        // Load default challenge on page load
+        window.addEventListener('DOMContentLoaded', function() {{
+            const select = document.getElementById('challenge_id');
+            if (select.value === '007bbfb7') {{
+                loadChallenge();
+            }}
+        }});
     </script>
 </head>
 <body>
     <div class="main-container">
         <div class="left-content">
+            <div class="info-section">
+                <h2>Abstract Port Graph Visualizer</h2>
+                <p>
+                    Abstract Port Graphs (APG) is a framework for representing programs as graphs for program synthesis.
+                    This demo provides examples of 40+ programs which represent solutions to ARC AGI 1 tasks using a 
+                    Domain Specific Language (DSL) built on top of APG.
+                </p>
+                <ul class="info-links">
+                    <li>
+                    Read the paper: <a href="https://drive.google.com/file/d/1T1EuGF-lzQHQYAN18er3j-4KBi1gqtp-/view" target="_blank">https://drive.google.com/file/d/1T1EuGF-lzQHQYAN18er3j-4KBi1gqtp-/view</a>
+                    </li>
+                    <li>
+                    Github Repo: <a href="https://github.com/ethanbond64/abstract-port-graphs" target="_blank" rel="noopener noreferrer">https://github.com/ethanbond64/abstract-port-graphs</a>
+                    </li>
+                    <li>
+                    Learn about ARC AGI: <a href="https://arcprize.org" target="_blank" rel="noopener noreferrer">https://arcprize.org</a>
+                    </li>
+                </ul>
+            </div>
+
             <div class="header">
                 <div class="header-content">
                     <div class="title-section">
-                        <h1>ARC Visualizer</h1>
-                        <p class="subtitle">Graph structure visualization</p>
+                        <h1>Graph Visualization</h1>
+                        <p class="subtitle">View interactive port graphs which represent solutions to ARC tasks</p>
                     </div>
 
                     <div class="controls-section">
                         <div class="form-inline">
-                            <label for="challenge_id">Challenge:</label>
+                            <label for="challenge_id">Task ID:</label>
                             <select id="challenge_id" onchange="loadChallenge()">
                                 {options_str}
                             </select>
@@ -401,6 +488,10 @@ def generate_static_index(task_ids, output_dir):
             </div>
         </div>
     </div>
+
+    <footer>
+        Built by Ethan Bond
+    </footer>
 </body>
 </html>'''
 
@@ -411,7 +502,7 @@ def generate_static_index(task_ids, output_dir):
     print("Generated index.html")
 
 
-def main():
+def main(gen_all=True):
     """Main function to generate all static files."""
 
     # Create output directory
@@ -440,18 +531,19 @@ def main():
     graph_success = 0
     grid_success = 0
 
-    for i, task_id in enumerate(available_task_ids, 1):
-        print(f"Processing {task_id} ({i}/{len(available_task_ids)})...")
+    if gen_all:
+        for i, task_id in enumerate(available_task_ids, 1):
+            print(f"Processing {task_id} ({i}/{len(available_task_ids)})...")
 
-        if generate_graph_file(task_id, output_dir):
-            graph_success += 1
+            if generate_graph_file(task_id, output_dir):
+                graph_success += 1
 
-        if generate_grid_file(task_id, output_dir):
-            grid_success += 1
+            if generate_grid_file(task_id, output_dir):
+                grid_success += 1
 
-    print()
-    print(f"Generated {graph_success} graph files")
-    print(f"Generated {grid_success} grid files")
+        print()
+        print(f"Generated {graph_success} graph files")
+        print(f"Generated {grid_success} grid files")
 
     # Generate index.html
     generate_static_index(available_task_ids, output_dir)
@@ -463,4 +555,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(False)
